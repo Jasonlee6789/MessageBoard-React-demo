@@ -18,11 +18,12 @@ class App extends Component {
     ],
   };
 
-  addTodo = (newTodo) => {
+  addTodo = (nicknameValue, contentValue) => {
     let { data } = this.state;
     data.unshift({
       id: Date.now(),
-      title: newTodo,
+      nickname: nicknameValue,
+      content: contentValue,
     });
     this.setState({
       data,
