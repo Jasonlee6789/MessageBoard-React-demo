@@ -1,25 +1,14 @@
 import React, { Component } from "react";
+import Li from "./li";
 
 class List extends Component {
   render() {
-    let { data, removeTodo } = this.props;
+    let { data } = this.props;
     return (
       <ul className="messageList">
-        {data.map((item, index) => {
-          return (
-            <li key={index}>
-              <h3>{item.nickname}</h3>
-              <p>{item.content}</p>
-              <a
-                onClick={() => {
-                  removeTodo(item.id);
-                }}
-              >
-                删除
-              </a>
-            </li>
-          );
-        })}
+        {data.map((item) => (
+          <Li key={item.id} {...this.props} data={item} />
+        ))}
       </ul>
     );
   }
