@@ -47,6 +47,18 @@ class App extends Component {
     });
   };
 
+  changeContent = (id, content) => {
+    let { data } = this.state;
+    data.forEach((item) => {
+      if (item.id === id) {
+        item.content = content;
+      }
+    });
+    this.setState({
+      data,
+    });
+  };
+
   removeTodo = (id) => {
     let { data } = this.state;
     this.setState({
@@ -72,6 +84,7 @@ class App extends Component {
               data={data}
               removeTodo={this.removeTodo}
               changeDone={this.changeDone}
+              changeContent={this.changeContent}
             />
             <State data={data} removeDone={this.removeDone} />
           </Fragment>

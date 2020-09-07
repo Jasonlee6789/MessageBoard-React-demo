@@ -115,7 +115,7 @@ body {
   text-indent: 2em;
 }
 .messageList .editing p {
-  display: block;
+  display: none;
 }
 .messageList .editing textarea {
   display: block;
