@@ -28,12 +28,12 @@ class Li extends Component {
       //   <ul className="messageList">
       //     {data.map((item, index) => {
       //       return (
-      <li className={edit ? "editing" : ""} key={id}>
+      <li className={(edit ? "editing" : "", done ? "done" : "")} key={id}>
         <h3>{nickname}</h3>
         <input
           type="checkbox"
           checked={done}
-          onChange={(target) => {
+          onChange={({ target }) => {
             changeDone(id, target.checked);
           }}
         />

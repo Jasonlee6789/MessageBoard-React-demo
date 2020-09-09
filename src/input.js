@@ -48,6 +48,8 @@ class Input extends Component {
                 nicknameValue: "",
                 contentValue: "",
               });
+            } else {
+              alert("请输入完整的内容");
             }
           }}
         >

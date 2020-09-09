@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Input from "./input";
 import List from "./list";
-
 import State from "./state";
 
 class App extends Component {
@@ -21,21 +20,30 @@ class App extends Component {
       },
     ],
   };
-
+  //添加留言
   addTodo = (nicknameValue, contentValue) => {
     let { data } = this.state;
-    data.unshift({
-      id: Date.now(),
-      nickname: nicknameValue,
-      done: false,
-      content: contentValue,
-    });
+    // data.unshift({
+    //   id: Date.now(),
+    //   nickname: nicknameValue,
+    //   done: false,
+    //   content: contentValue,
+    // });
     this.setState({
-      data,
+      data: [
+        {
+          id: Date.now(),
+          nickname: nicknameValue,
+          done: false,
+          content: contentValue,
+        },
+        ...data,
+      ],
     });
   };
-
+  //选中留言
   changeDone = (id, done) => {
+    console.log(id);
     let { data } = this.state;
     data.forEach((item) => {
       if (item.id === id) {
@@ -46,7 +54,7 @@ class App extends Component {
       data,
     });
   };
-
+  //编辑留言
   changeContent = (id, content) => {
     let { data } = this.state;
     data.forEach((item) => {
@@ -58,20 +66,31 @@ class App extends Component {
       data,
     });
   };
-
+  //删除留言
   removeTodo = (id) => {
     let { data } = this.state;
     this.setState({
       data: data.filter((item) => id !== item.id),
     });
   };
-
+  //全选
+  checkedAllMessage = (done) => {
+    let { data } = this.state;
+    data.forEach((item) => {
+      item.done = done;
+    });
+    this.setState({
+      data,
+    });
+  };
+  //删除选中项
   removeDone = () => {
     let { data } = this.state;
     this.setState({
       data: data.filter((item) => !item.done),
     });
   };
+
   render() {
     let { data } = this.state;
     return (
@@ -86,7 +105,11 @@ class App extends Component {
               changeDone={this.changeDone}
               changeContent={this.changeContent}
             />
-            <State data={data} removeDone={this.removeDone} />
+            <State
+              data={data}
+              removeDone={this.removeDone}
+              checkedAllMessage={this.checkedAllMessage}
+            />
           </Fragment>
         ) : (
           ""
